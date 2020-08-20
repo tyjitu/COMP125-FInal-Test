@@ -1,3 +1,11 @@
+/*
+File name: game.ts
+Author's name: Tamanna Yasmin Jitu
+StudentID: 300924009
+Date: August 19, 2020
+Program description: This file is used for rolling two dice
+*/
+
 let Game = (function(){
 
     // variable declarations
