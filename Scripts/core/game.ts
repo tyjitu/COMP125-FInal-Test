@@ -11,7 +11,7 @@ let Game = (function(){
     // variable declarations
     let canvas:HTMLCanvasElement = document.getElementsByTagName('canvas')[0];
     let stage:createjs.Stage;
-    
+    let diceBackground: Core.GameObject;
     let assets: createjs.LoadQueue;
 
     let exampleLabel: UIObjects.Label;
@@ -79,6 +79,8 @@ let Game = (function(){
     function Main():void
     {
         console.log(`%c Main Function`, "color: grey; font-size: 14px; font-weight: bold;");
+        diceBackground = new Core.GameObject("background", Config.Game.CENTER_X, Config.Game.CENTER_Y, true );
+        stage.addChild(diceBackground);
 
         exampleLabel = new UIObjects.Label("An Example Label", "40px", "Consolas", "#000000", Config.Game.CENTER_X, Config.Game.CENTER_Y, true);
         stage.addChild(exampleLabel);
