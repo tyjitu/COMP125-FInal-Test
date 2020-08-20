@@ -87,7 +87,6 @@ let Game = (function () {
             console.log("example button clicked");
             let leftrandomnumber = Math.floor(Util.Mathf.RandomRange(1, 6));
             let rightrandomnumber = Math.floor(Util.Mathf.RandomRange(1, 6));
-            //${parseInt(this.properties.n1) + parseint(this.properties.n2)}
             totalValue.setText(`Total= ${parseInt(leftrandomnumber.toString()) + parseInt(rightrandomnumber.toString())}!`);
             leftDiceValue.setText(`Value=${leftrandomnumber.toString()}`);
             rightDiceValue.setText(`Value=${rightrandomnumber.toString()}`);
