@@ -10,10 +10,14 @@ let Game = (function () {
     // variable declarations
     let canvas = document.getElementsByTagName('canvas')[0];
     let stage;
-    let diceBackground;
     let assets;
-    let exampleLabel;
-    let exampleButton;
+    let diceBackground;
+    let leftDiceValue;
+    let leftDice;
+    let rightDice;
+    let rightDiceValue;
+    let totalValue;
+    let rollButton;
     let assetManifest = [
         { id: "1", src: "./Assets/images/1.png" },
         { id: "2", src: "./Assets/images/2.png" },
@@ -67,12 +71,30 @@ let Game = (function () {
         console.log(`%c Main Function`, "color: grey; font-size: 14px; font-weight: bold;");
         diceBackground = new Core.GameObject("background", Config.Game.CENTER_X, Config.Game.CENTER_Y, true);
         stage.addChild(diceBackground);
-        exampleLabel = new UIObjects.Label("An Example Label", "40px", "Consolas", "#000000", Config.Game.CENTER_X, Config.Game.CENTER_Y, true);
-        stage.addChild(exampleLabel);
-        exampleButton = new UIObjects.Button("button", Config.Game.CENTER_X, Config.Game.CENTER_Y + 100, true);
-        stage.addChild(exampleButton);
-        exampleButton.on("click", () => {
+        leftDice = new UIObjects.Button("blank", Config.Game.CENTER_X - 200, Config.Game.CENTER_Y - 100, true);
+        stage.addChild(leftDice);
+        leftDiceValue = new UIObjects.Label("0", "40px", "Consolas", "#FFFF00", Config.Game.CENTER_X - 200, Config.Game.CENTER_Y + 40, true);
+        stage.addChild(leftDiceValue);
+        rightDice = new UIObjects.Button("blank", Config.Game.CENTER_X + 200, Config.Game.CENTER_Y - 100, true);
+        stage.addChild(rightDice);
+        rightDiceValue = new UIObjects.Label("0", "40px", "Consolas", "#FFFF00", Config.Game.CENTER_X + 200, Config.Game.CENTER_Y + 40, true);
+        stage.addChild(rightDiceValue);
+        rollButton = new UIObjects.Button("rollButton", Config.Game.CENTER_X, Config.Game.CENTER_Y + 170, true);
+        stage.addChild(rollButton);
+        totalValue = new UIObjects.Label("Total", "40px", "Consolas", "#00FF33", Config.Game.CENTER_X, Config.Game.CENTER_Y + 100, true);
+        stage.addChild(totalValue);
+        rollButton.on("click", () => {
             console.log("example button clicked");
+            let leftrandomnumber = Math.floor(Util.Mathf.RandomRange(1, 6));
+            let rightrandomnumber = Math.floor(Util.Mathf.RandomRange(1, 6));
+            //${parseInt(this.properties.n1) + parseint(this.properties.n2)}
+            totalValue.setText(`Total= ${parseInt(leftrandomnumber.toString()) + parseInt(rightrandomnumber.toString())}!`);
+            leftDiceValue.setText(`Value=${leftrandomnumber.toString()}`);
+            rightDiceValue.setText(`Value=${rightrandomnumber.toString()}`);
+            let leftimage = assets.getResult(leftrandomnumber.toString());
+            let rightimage = assets.getResult(rightrandomnumber.toString());
+            leftDice.image = leftimage;
+            rightDice.image = rightimage;
         });
     }
     window.addEventListener('load', Preload);
